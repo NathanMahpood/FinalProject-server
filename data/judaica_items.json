@@ -1,0 +1,212 @@
+[
+  {
+    "name": "Sterling Silver Kiddush Cup",
+    "image": "https://hazorfim.co.il/dw/image/v2/BFZQ_PRD/on/demandware.static/-/Sites-hazorfim-master-catalog/default/dw0b0bf3a2/images/hi-res/20528-0130.jpg?sw=670&sh=670",
+    "categoryCode": "kiddush_items",
+    "price": 89.99,
+    "count": 10
+  },
+  {
+    "name": "Havdalah Set",
+    "image": "https://cdn11.bigcommerce.com/s-gtyjsq0orx/images/stencil/1280x1280/products/16502/16403/Ornate-Silver-Plated-Havdalah-Set-CO4213__74543.1666113042.jpg?c=1",
+    "categoryCode": "havdalah",
+    "price": 120.0,
+    "count": 5
+  },
+  {
+    "name": "Shabbat Candlesticks",
+    "image": "https://cdn11.bigcommerce.com/s-gtyjsq0orx/images/stencil/1280x1280/products/15654/12206/Faceted-Crystal-Shabbat-Candlesticks-ATCSX3131GZ__63046.1633008235.jpg?c=1",
+    "categoryCode": "shabbat_table",
+    "price": 75.5,
+    "count": 12
+  },
+  {
+    "name": "Mezuzah Scroll and Case",
+    "image": "https://static.wixstatic.com/media/284fac_3570d4b13e104c7f9c8bd22c3e1c8cfd~mv2_d_2144_1424_s_2.jpg/v1/fill/w_558,h_371,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/284fac_3570d4b13e104c7f9c8bd22c3e1c8cfd~mv2_d_2144_1424_s_2.jpg",
+    "categoryCode": "mezuzah",
+    "price": 39.95,
+    "count": 30
+  },
+  {
+    "name": "Menorah - Modern Design",
+    "image": "https://kolbo.com/cdn/shop/products/5c1533ae31cc55bf1dad75b639abf3c2.png?v=1581457132",
+    "categoryCode": "hanukkah",
+    "price": 65.0,
+    "count": 15
+  },
+  {
+    "name": "Tallit - Blue and Silver",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTfLDCxDt-Tp-RDr8kyMwI8E_cBf6yl-03KA&s",
+    "categoryCode": "tallit_bags",
+    "price": 99.99,
+    "count": 8
+  },
+  {
+    "name": "Tefillin Set",
+    "image": "https://w2.chabad.org/media/images/1001/tssr10017465.jpg?_i=_n32DD4A5CE5B405756B86D11830CBE5B1",
+    "categoryCode": "tefillin",
+    "price": 350.0,
+    "count": 3
+  },
+  {
+    "name": "Hebrew-English Siddur",
+    "image": "https://images.squarespace-cdn.com/content/v1/55958e9ae4b078c942d52545/1651070738017-93QUXSCKTVA7SMDYVO6G/ep-sth.ael.jpg?format=500w",
+    "categoryCode": "prayer_books",
+    "price": 25.0,
+    "count": 20
+  },
+  {
+    "name": "Torah Pointer (Yad)",
+    "image": "https://store.cityofdavid.org.il/cdn/shop/products/IMG_8088b.jpg?v=1634122514",
+    "categoryCode": "torah_accessories",
+    "price": 45.0,
+    "count": 10
+  },
+  {
+    "name": "Kippah - Velvet",
+    "image": "https://kippotworld.com/cdn/shop/products/velvet-darkbrown-kippa_bf3a363b-d602-4c57-86d6-f9d31157a7d7.png?v=1626110105",
+    "categoryCode": "head_coverings",
+    "price": 9.99,
+    "count": 100
+  },
+  {
+    "name": "Seder Plate - Ceramic",
+    "image": "https://static.wixstatic.com/media/284fac_93c3f02f047f44cd9d06f4b17bf50515~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/284fac_93c3f02f047f44cd9d06f4b17bf50515~mv2.jpg",
+    "categoryCode": "passover",
+    "price": 55.0,
+    "count": 7
+  },
+  {
+    "name": "Challah Cover - Embroidered",
+    "image": "https://i.etsystatic.com/18643693/r/il/182c9e/5892195520/il_570xN.5892195520_ikn2.jpg",
+    "categoryCode": "challah_accessories",
+    "price": 29.99,
+    "count": 18
+  },
+  {
+    "name": "Shofar - Medium Size",
+    "image": "https://kolshofar.co.il/wp-content/uploads/2023/01/%D7%A9%D7%95%D7%A4%D7%A8-%D7%90%D7%99%D7%9C-%D7%91%D7%91%D7%9C%D7%99-4-%D7%9B%D7%94%D7%94-2.jpg",
+    "categoryCode": "shofars",
+    "price": 80.0,
+    "count": 6
+  },
+  {
+    "name": "Dreidels - Wood Set",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-JSzQ_NRu8mlMx7yB94CBfFQusW7pQL__yw&s",
+    "categoryCode": "holiday_toys",
+    "price": 14.5,
+    "count": 25
+  },
+  {
+    "name": "Hanukkah Gelt (Chocolate Coins)",
+    "image": "https://m.media-amazon.com/images/I/81E3xRFQo2L._UF350,350_QL80_.jpg",
+    "categoryCode": "holiday_treats",
+    "price": 5.0,
+    "count": 50
+  },
+  {
+    "name": "Aleph-Bet Wall Poster",
+    "image": "https://torahaura.com/cdn/shop/products/12230X.png?v=1571710219",
+    "categoryCode": "educational",
+    "price": 12.99,
+    "count": 40
+  },
+  {
+    "name": "Jewish Star Necklace",
+    "image": "https://i.etsystatic.com/22756786/r/il/cc13c5/2760887440/il_570xN.2760887440_46a1.jpg",
+    "categoryCode": "jewelry",
+    "price": 19.99,
+    "count": 22
+  },
+  {
+    "name": "Jerusalem Wall Art",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZCS0Ugq8ZLjZ4wy85sxJYIFosoDeQwhqCjg&s",
+    "categoryCode": "home_decor",
+    "price": 60.0,
+    "count": 9
+  },
+  {
+    "name": "Charoset Dish",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJxfZzal27J1KcOQrWKRYLuolqsJ6Ck8Fdw&s",
+    "categoryCode": "passover",
+    "price": 18.0,
+    "count": 14
+  },
+  {
+    "name": "Yemenite Shofar",
+    "image": "https://m.media-amazon.com/images/I/417zq4fj2fL.jpg",
+    "categoryCode": "shofars",
+    "price": 200.0,
+    "count": 2
+  },
+  {
+    "name": "Passover Haggadah",
+    "image": "https://www.eastonpress.com/on/demandware.static/-/Sites-full-catalog/default/dw302ebd6f/images/hi-res/Passover-Haggadah_3632_L_LQ.jpg",
+    "categoryCode": "prayer_books",
+    "price": 10.0,
+    "count": 60
+  },
+  {
+    "name": "Kiddush Fountain",
+    "image": "https://hazorfim.co.il/dw/image/v2/BFZQ_PRD/on/demandware.static/-/Sites-hazorfim-master-catalog/default/dw753eb694/images/hi-res/10883-0975.jpg?sw=670&sh=670",
+    "categoryCode": "kiddush_items",
+    "price": 150.0,
+    "count": 4
+  },
+  {
+    "name": "Tallit Bag",
+    "image": "https://cdn11.bigcommerce.com/s-78164/images/stencil/1280x1280/products/1525/6680/Faux_Leather_Black_Cream_Tan_Tallit_Bag__99652.1636903081.jpg?c=2",
+    "categoryCode": "tallit_bags",
+    "price": 35.0,
+    "count": 15
+  },
+  {
+    "name": "Mezuzah - Glass Art",
+    "image": "https://shcg-uploads.s3.amazonaws.com/wp-content/uploads/2018/10/14140835/DSC_5707-e1539829773579.jpg",
+    "categoryCode": "mezuzah",
+    "price": 42.0,
+    "count": 17
+  },
+  {
+    "name": "Challah Knife",
+    "image": "https://hazorfim.co.il/dw/image/v2/BFZQ_PRD/on/demandware.static/-/Sites-hazorfim-master-catalog/default/dw1466be95/images/hi-res/18237-0095.jpg?sw=670&sh=670",
+    "categoryCode": "challah_accessories",
+    "price": 24.99,
+    "count": 11
+  },
+  {
+    "name": "Ketubah - Art Print",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT29WFGS8NPyIJ7gUHeiwzk_hEUw_0t_1kWzg&s",
+    "categoryCode": "home_decor",
+    "price": 130.0,
+    "count": 3
+  },
+  {
+    "name": "Purim Gragger",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1e5DLHV-msM-K4pLFE3OwObO0Y9nWSIyLNA&s",
+    "categoryCode": "holiday_toys",
+    "price": 7.5,
+    "count": 34
+  },
+  {
+    "name": "Hebrew Calendar",
+    "image": "https://israelbookshop.com/cdn/shop/files/January-2026-for-Etsy-484x484_484x484.jpg?v=1747859651",
+    "categoryCode": "educational",
+    "price": 16.0,
+    "count": 28
+  },
+  {
+    "name": "Shabbat Tablecloth",
+    "image": "https://cdn11.bigcommerce.com/s-gtyjsq0orx/images/stencil/1280x1280/products/15183/14449/table-cloth-challah-cover-MAJTC60V2__45618.1640032696.jpg?c=1",
+    "categoryCode": "shabbat_table",
+    "price": 40.0,
+    "count": 7
+  },
+  {
+    "name": "Jewish Home Blessing Plaque",
+    "image": "https://m.media-amazon.com/images/I/7183YT9wu0S._UF894,1000_QL80_.jpg",
+    "categoryCode": "home_decor",
+    "price": 22.5,
+    "count": 13
+  }
+]
