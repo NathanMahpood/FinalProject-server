@@ -43,9 +43,14 @@ router.post("/login", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new UserModel({ name, email, password: hashedPassword });
+    const user = new UserModel({
+      name,
+      email,
+      password: hashedPassword,
+      role: role || "passenger",
+    });
     await user.save();
     user.password = "********";
     res.status(201).json(user);
