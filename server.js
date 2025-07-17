@@ -17,6 +17,7 @@ app.use(express.json());
 // for every request, use the router
 app.use(indexRoute);
 
+
 // listen - start the server and listen to requests
 // param1 port - the port number to listen to
 // param2 callback function - what to do when the server starts
