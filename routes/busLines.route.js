@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     const {
+        id,
         operator_refs,
         route_short_name,
         route_long_name,
@@ -23,6 +24,10 @@ router.get('/', async (req, res) => {
 
     if (route_short_name) {
         query.route_short_name = new RegExp(route_short_name, 'i');
+    }
+
+    if (id) {
+        query.id = new RegExp(id, 'i');
     }
 
     if (route_long_name) {

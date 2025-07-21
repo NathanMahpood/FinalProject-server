@@ -3,16 +3,36 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, "Name is required"],
+    minlength: [2, "Name must be at least 2 characters"],
+    maxlength: [50, "Name must be at most 50 characters"],
+    trim: true,
   },
   email: {
     type: String,
     unique: true,
-    required: true,
+    required: [true, "Email is required"],
+    match: [/.+@.+\..+/, "Please enter a valid email address"],
+    lowercase: true,
+    trim: true,
   },
   password: {
     type: String,
-    required: true,
+    required: [true, "Password is required"],
+    minlength: [6, "Password must be at least 6 characters"],
+    maxlength: [128, "Password must be at most 128 characters"],
+    validate: {
+      validator: function (v) {
+        return (
+          /[0-9]/.test(v) &&
+          /[A-Z]/.test(v) &&
+          /[a-z]/.test(v) &&
+          /[^A-Za-z0-9]/.test(v)
+        );
+      },
+      message:
+        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+    },
   },
   role: {
     type: String,
@@ -21,6 +41,25 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const UserModel = mongoose.model("users", userSchema);
+// 👇 This MUST be in your model
+userSchema.virtual("confirmPassword")
+  .get(function () {
+    return this._confirmPassword;
+  })
+  .set(function (value) {
+    this._confirmPassword = value;
+  });
 
+// userSchema.pre("validate", function (next) {
+//   if (this.isNew || this.isModified("password")) {
+//     if (this.password !== this._confirmPassword) {
+//       console.log(this.password, this._confirmPassword);
+      
+//       this.invalidate("confirmPassword", "Passwords do not match");
+//     }
+//   }
+//   next();
+// });
+
+const UserModel = mongoose.model("users", userSchema);
 export default UserModel;
