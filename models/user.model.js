@@ -41,7 +41,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// 👇 This MUST be in your model
 userSchema.virtual("confirmPassword")
   .get(function () {
     return this._confirmPassword;
@@ -49,17 +48,6 @@ userSchema.virtual("confirmPassword")
   .set(function (value) {
     this._confirmPassword = value;
   });
-
-// userSchema.pre("validate", function (next) {
-//   if (this.isNew || this.isModified("password")) {
-//     if (this.password !== this._confirmPassword) {
-//       console.log(this.password, this._confirmPassword);
-      
-//       this.invalidate("confirmPassword", "Passwords do not match");
-//     }
-//   }
-//   next();
-// });
 
 const UserModel = mongoose.model("users", userSchema);
 export default UserModel;
