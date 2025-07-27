@@ -47,7 +47,7 @@ router.get("/station/:id", async (req, res) => {
 });
 
 // נתיב חדש להחזרת המסלול הראשון של קו מסוים עם populate על התחנות
-router.get("  ", async (req, res) => {
+router.get("/line/:busLineId", async (req, res) => {
   try {
     const { busLineId } = req.params;
 
