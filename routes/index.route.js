@@ -5,6 +5,7 @@ import stationsRoute from "./stations.route.js";
 import routesRoute from "./routes.route.js";
 import Logger from "../utils/Logger.js";
 import busRoutes from "./busLines.route.js";
+import counterRoute from "./counter.route.js";
 
 
 const router = Router();
@@ -25,5 +26,6 @@ router.use("/auth", authRoute);
 router.use('/bus-lines', busRoutes);
 router.use("/stations", stationsRoute);
 router.use("/routes", routesRoute);
+router.use("/counters", counterRoute);
 
 export default router;
