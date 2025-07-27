@@ -24,7 +24,9 @@ router.get("/", async (req, res) => {
     filter.code = { $regex: code, $options: "i" };
   }
 
-  const stations = await StationModel.find(filter).limit(Number(limit)).skip(Number(offset));
+  const stations = await StationModel.find(filter)
+    .limit(Number(limit))
+    .skip(Number(offset));
 
   res.json({
     stations,

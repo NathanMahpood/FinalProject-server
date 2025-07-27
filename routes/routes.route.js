@@ -1,7 +1,6 @@
 import { Types } from "mongoose";
 import { Router } from "express";
 import RouteModel from "../models/route.model.js";
-import BusLineModel from "../models/busLines.model.js";
 
 const router = Router();
 
@@ -103,6 +102,49 @@ router.get("/station/:id", async (req, res) => {
   } catch (error) {
     console.error("Error fetching station routes:", error);
     res.status(500).json({ error: "Failed to fetch station routes" });
+  }
+});
+
+// נתיב חדש להחזרת המסלול הראשון של קו מסוים עם populate על התחנות
+router.get("/line/:busLineId", async (req, res) => {
+  try {
+    const { busLineId } = req.params;
+
+    // מחפש את המסלול הראשון של הקו הספציפי
+    const firstRoute = await RouteModel.findOne({
+      busLineId: busLineId,
+    }).populate("busLineId");
+
+    if (!firstRoute) {
+      return res.status(404).json({
+        message: "לא נמצא מסלול עבור קו זה",
+        route: null,
+      });
+    }
+
+    const stationsWithDetails = await Promise.all(
+      (firstRoute.stations || []).map(async (stationId) => {
+        try {
+          const station = await StationModel.findOne({ id: stationId });
+          return station;
+        } catch (err) {
+          console.error(`Error fetching station ${stationId}:`, err);
+          return null;
+        }
+      })
+    );
+
+    res.json({
+      _id: firstRoute._id,
+      busLineId: firstRoute.busLineId,
+      stations: stationsWithDetails,
+    });
+  } catch (error) {
+    console.error("שגיאה בשליפת המסלול הראשון:", error);
+    res.status(error.status || 500).json({
+      message: "שגיאה בשליפת המסלול הראשון",
+      error: error.message,
+    });
   }
 });
 
