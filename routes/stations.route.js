@@ -4,7 +4,7 @@ import StationModel from "../models/station.model.js";
 const router = Router();
 
 router.get("/", async (req, res) => {
-  const { lat, lon, name, city, limit = 100, offset = 0 } = req.query;
+  const { lat, lon, name, city, code, limit = 100, offset = 0 } = req.query;
 
   const filter = {};
 
@@ -19,6 +19,9 @@ router.get("/", async (req, res) => {
   }
   if (city) {
     filter.city = { $regex: city, $options: "i" };
+  }
+  if (code) {
+    filter.code = { $regex: code, $options: "i" };
   }
 
   const stations = await StationModel.find(filter)

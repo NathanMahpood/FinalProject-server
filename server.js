@@ -11,6 +11,7 @@ const app = express();
 // cors
 app.use(cors());
 
+
 // express.json() - middleware that parses incoming requests with JSON payloads
 app.use(express.json());
 
