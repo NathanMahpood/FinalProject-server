@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+import { MONGO_URL } from "../env.config";
 
 mongoose
-  .connect("mongodb://localhost:27017/buscheck")
+  .connect(MONGO_URL)
   .then(() => {
     console.log("mongo connected");
   })

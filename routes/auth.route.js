@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import { Router } from "express";
 import UserModel from "../models/user.model.js";
 import { validateToken } from "../middlewares/tokenValidation.js";
+import { JWT_SECRET } from "../env.config.js";
 
 const router = Router();
 
@@ -18,8 +19,9 @@ router.post("/login", async (req, res) => {
 
     // Check if driver is approved
     if (user.role === "driver" && user.status !== "approved") {
-      return res.status(401).json({ 
-        message: "Your driver account is pending approval. Please contact the administrator." 
+      return res.status(401).json({
+        message:
+          "Your driver account is pending approval. Please contact the administrator.",
       });
     }
 
@@ -33,7 +35,7 @@ router.post("/login", async (req, res) => {
       role: user.role,
     };
 
-    const token = jwt.sign(payload, "secret", {
+    const token = jwt.sign(payload, JWT_SECRET, {
       expiresIn: "24h",
     });
 
@@ -82,7 +84,8 @@ router.post("/signup", async (req, res) => {
     if (role === "driver") {
       res.status(201).json({
         ...user.toObject(),
-        message: "Driver account created successfully. Please wait for admin approval before logging in."
+        message:
+          "Driver account created successfully. Please wait for admin approval before logging in.",
       });
     } else {
       res.status(201).json(user);
@@ -108,9 +111,9 @@ router.get("/pending-drivers", validateToken, async (req, res) => {
       return res.status(403).json({ message: "Access denied. Admin only." });
     }
 
-    const pendingDrivers = await UserModel.find({ 
-      role: "driver", 
-      status: "pending" 
+    const pendingDrivers = await UserModel.find({
+      role: "driver",
+      status: "pending",
     }).select("-password");
 
     res.json(pendingDrivers);
@@ -131,7 +134,9 @@ router.put("/approve-driver/:driverId", validateToken, async (req, res) => {
     const { action } = req.body; // "approve" or "reject"
 
     if (!["approve", "reject"].includes(action)) {
-      return res.status(400).json({ message: "Invalid action. Use 'approve' or 'reject'" });
+      return res
+        .status(400)
+        .json({ message: "Invalid action. Use 'approve' or 'reject'" });
     }
 
     const driver = await UserModel.findById(driverId);
@@ -149,7 +154,7 @@ router.put("/approve-driver/:driverId", validateToken, async (req, res) => {
     driver.password = "********";
     res.json({
       message: `Driver ${action}d successfully`,
-      driver
+      driver,
     });
   } catch (err) {
     res.status(400).json(err);
