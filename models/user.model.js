@@ -39,6 +39,15 @@ const userSchema = new mongoose.Schema({
     enum: ["passenger", "driver", "admin"],
     default: "passenger",
   },
+  status: {
+    type: String,
+    enum: ["pending", "approved", "rejected"],
+    default: "pending",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 userSchema.virtual("confirmPassword")
