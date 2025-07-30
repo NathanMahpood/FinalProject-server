@@ -51,7 +51,7 @@ router.get("/station/:id", async (req, res) => {
     // Find routes and populate busLineId with selected fields for better debug
     const routes = await RouteModel.find({
       stations: { $in: [stationId] }
-    }).populate("busLineId", "route_short_name route_long_name route_desc agency_name");
+    }).populate("busLineId", "route_short_name route_long_name route_desc agency_name route_mkt");
 
     console.log("Routes found for station ID:", routes.length);
 
@@ -69,6 +69,7 @@ router.get("/station/:id", async (req, res) => {
         console.log("    route_long_name:", busLine.route_long_name);
         console.log("    agency_name:", busLine.agency_name);
         console.log("    route_desc:", busLine.route_desc);
+        console.log("    route_mkt:", busLine.route_mkt);
       }
     });
 

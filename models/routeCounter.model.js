@@ -25,6 +25,10 @@ const routeCounterSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  routeDirection: {
+    type: String,
+    required: false,
+  },
   counter: {
     type: Number,
     required: true,
@@ -38,8 +42,8 @@ const routeCounterSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-// Compound index to ensure unique combinations of station and line
-routeCounterSchema.index({ stationId: 1, route_mkt: 1 }, { unique: true });
+// Compound index to ensure unique combinations of station, line, and direction
+routeCounterSchema.index({ stationId: 1, route_mkt: 1, routeDirection: 1 }, { unique: true });
 
 const RouteCounter = mongoose.model("counter", routeCounterSchema);
 
