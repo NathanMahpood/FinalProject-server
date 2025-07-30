@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../env.config";
+import { JWT_SECRET } from "../env.config.js";
 
 export function validateToken(req, res, next) {
   try {
