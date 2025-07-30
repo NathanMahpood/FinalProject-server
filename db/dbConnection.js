@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MONGO_URL } from "../env.config";
+import { MONGO_URL } from "../env.config.js";
 
 mongoose
   .connect(MONGO_URL)

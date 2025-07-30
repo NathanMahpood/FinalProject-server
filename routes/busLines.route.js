@@ -44,7 +44,6 @@ router.get('/driver-search', async (req, res) => {
             operator_ref: route.operator_ref,
             route_type: route.route_type,
             route_mkt: route.route_mkt,
-            route_direction: route.route_direction,
             route_alternative: route.route_alternative,
             date: route.date,
             line_ref: route.line_ref
@@ -121,7 +120,6 @@ router.get('/', async (req, res) => {
             operator_ref: route.operator_ref,
             route_type: route.route_type,
             route_mkt: route.route_mkt,
-            route_direction: route.route_direction,
             route_alternative: route.route_alternative,
             date: route.date,
             line_ref: route.line_ref
