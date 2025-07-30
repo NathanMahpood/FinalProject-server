@@ -26,8 +26,8 @@ async function ensureCorrectIndexes() {
     }
     
     // Ensure the correct index exists
-    await RouteCounter.collection.createIndex({ stationId: 1, route_mkt: 1 }, { unique: true });
-    console.log('Created correct index: stationId_1_route_mkt_1');
+    await RouteCounter.collection.createIndex({ stationId: 1, route_mkt: 1, routeDirection: 1 }, { unique: true });
+    console.log('Created correct index: stationId_1_route_mkt_1_routeDirection_1');
   } catch (error) {
     console.error('Error ensuring correct indexes:', error);
   }
@@ -39,7 +39,7 @@ ensureCorrectIndexes();
 // POST /route-counter - Increment route counter
 router.post('/', validateToken, async (req, res) => {
   try {
-    const { stationId, stationName, lineShortName, routeLongName, agencyName, route_mkt } = req.body;
+    const { stationId, stationName, lineShortName, routeLongName, agencyName, route_mkt, routeDirection } = req.body;
     const userId = req.user.id; // From token validation middleware - token stores it as 'id', not '_id'
 
     // Convert route_mkt to number if it's a string
@@ -55,10 +55,11 @@ router.post('/', validateToken, async (req, res) => {
       });
     }
 
-    // Check if a document with the same station and line already exists
+    // Check if a document with the same station, line, and direction already exists
     const existingCounter = await RouteCounter.findOne({
       stationId: stationId,
-      route_mkt: route_mkt_num
+      route_mkt: route_mkt_num,
+      routeDirection: routeDirection
     });
 
     if (existingCounter) {
@@ -97,6 +98,7 @@ router.post('/', validateToken, async (req, res) => {
         routeLongName: routeLongName,
         agencyName: agencyName,
         route_mkt: route_mkt_num,
+        routeDirection: routeDirection,
         counter: 1,
         users: [userId]
       });
@@ -122,7 +124,7 @@ router.post('/', validateToken, async (req, res) => {
           console.log('All docs with this stationId:', allDocsWithStation);
           
           const updatedCounter = await RouteCounter.findOneAndUpdate(
-            { stationId: stationId, route_mkt: route_mkt_num },
+            { stationId: stationId, route_mkt: route_mkt_num, routeDirection: routeDirection },
             {
               $inc: { counter: 1 },
               $addToSet: { users: userId }
@@ -160,7 +162,7 @@ router.post('/', validateToken, async (req, res) => {
 // GET /route-counter/station - Get route counter for specific station and route
 router.get('/station', async (req, res) => {
   try {
-    const { stationId, route_mkt } = req.query;
+    const { stationId, route_mkt, routeDirection } = req.query;
     
     if (!stationId || !route_mkt) {
       return res.status(400).json({
@@ -172,12 +174,20 @@ router.get('/station', async (req, res) => {
     // Convert route_mkt to number if it's a string
     const route_mkt_num = Number(route_mkt);
     
-    console.log('Fetching route counter for:', { stationId, route_mkt, route_mkt_num });
+    console.log('Fetching route counter for:', { stationId, route_mkt, route_mkt_num, routeDirection });
 
-    const counter = await RouteCounter.findOne({
+    // Build query with optional direction filter
+    const query = {
       stationId: stationId,
       route_mkt: route_mkt_num
-    });
+    };
+    
+    // Add direction filter if provided
+    if (routeDirection && routeDirection.trim() !== '') {
+      query.routeDirection = routeDirection;
+    }
+
+    const counter = await RouteCounter.findOne(query);
 
     if (!counter) {
       // Return default data if no counter exists
