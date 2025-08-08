@@ -27,6 +27,8 @@ export default class Logger {
       2
     ).replace(/\\n/g, "\n")}`;
 
+    
+
     return `${coloredPrefix}${formattedMessage}`;
   }
 

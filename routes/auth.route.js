@@ -1,11 +1,20 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Router } from "express";
+import path from "path";
 import UserModel from "../models/user.model.js";
 import { validateToken } from "../middlewares/tokenValidation.js";
+import upload from "../middlewares/upload.js";
 import { JWT_SECRET } from "../env.config.js";
 
 const router = Router();
+
+// Serve uploaded images
+router.get("/uploads/:filename", (req, res) => {
+  const { filename } = req.params;
+  const filePath = path.join(process.cwd(), "uploads", filename);
+  res.sendFile(filePath);
+});
 
 // LOGIN ROUTE
 router.post("/login", async (req, res) => {
@@ -47,7 +56,7 @@ router.post("/login", async (req, res) => {
 });
 
 // SIGNUP ROUTE
-router.post("/signup", async (req, res) => {
+router.post("/signup", upload.single("image"), async (req, res) => {
   try {
     const { name, email, password, confirmPassword, role } = req.body;
 
@@ -61,14 +70,22 @@ router.post("/signup", async (req, res) => {
       status = "pending"; // Drivers need approval
     }
 
-    // Include confirmPassword in the constructor so virtual setter works
-    const user = new UserModel({
+    // Prepare user data
+    const userData = {
       name,
       email,
       password,
       role: role || "passenger",
       status,
-    });
+    };
+
+    // Add image path if file was uploaded (for drivers)
+    if (req.file && role === "driver") {
+      userData.image = req.file.filename;
+    }
+
+    // Include confirmPassword in the constructor so virtual setter works
+    const user = new UserModel(userData);
 
     await user.validate();
 
