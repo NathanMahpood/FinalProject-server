@@ -81,6 +81,31 @@ router.post('/', validateToken, async (req, res) => {
 
       console.log(`Updated route counter for station ${stationName}, line ${lineShortName}. New count: ${updatedCounter.counter}`);
       
+      // Emit socket event to notify drivers
+      const io = req.app.get("io");
+      if (io) {
+        // Ensure consistent string types for room name
+        const roomName = `station-${String(stationId)}-route-${String(route_mkt_num)}-dir-${String(routeDirection || "1")}`;
+        const eventData = {
+          stationId: String(stationId),
+          route_mkt: String(route_mkt_num),
+          routeDirection: String(routeDirection || "1"),
+          counter: updatedCounter.counter,
+          usersCount: updatedCounter.users.length,
+          shouldStop: updatedCounter.counter > 0
+        };
+        
+        // Get room size for debugging
+        const room = io.sockets.adapter.rooms.get(roomName);
+        const roomSize = room ? room.size : 0;
+        
+        io.to(roomName).emit("passenger-count-updated", eventData);
+        console.log(`[SOCKET] Emitted passenger-count-updated to room: ${roomName} (${roomSize} clients)`);
+        console.log(`[SOCKET] Event data:`, eventData);
+      } else {
+        console.error('[SOCKET] io not available in route handler');
+      }
+      
       return res.json({
         success: true,
         message: "Route counter updated successfully",
@@ -106,6 +131,32 @@ router.post('/', validateToken, async (req, res) => {
       try {
         await newCounter.save();
         console.log(`Created new route counter for station ${stationName}, line ${lineShortName}, route_mkt: ${route_mkt_num}`);
+        
+        // Emit socket event to notify drivers
+        const io = req.app.get("io");
+        if (io) {
+          // Ensure consistent string types for room name
+          const roomName = `station-${String(stationId)}-route-${String(route_mkt_num)}-dir-${String(routeDirection || "1")}`;
+          const eventData = {
+            stationId: String(stationId),
+            route_mkt: String(route_mkt_num),
+            routeDirection: String(routeDirection || "1"),
+            counter: 1,
+            usersCount: 1,
+            shouldStop: true
+          };
+          
+          // Get room size for debugging
+          const room = io.sockets.adapter.rooms.get(roomName);
+          const roomSize = room ? room.size : 0;
+          
+          io.to(roomName).emit("passenger-count-updated", eventData);
+          console.log(`[SOCKET] Emitted passenger-count-updated to room: ${roomName} (${roomSize} clients)`);
+          console.log(`[SOCKET] Event data:`, eventData);
+        } else {
+          console.error('[SOCKET] io not available in route handler');
+        }
+        
         return res.json({
           success: true,
           message: "New route counter created successfully",
@@ -139,6 +190,32 @@ router.post('/', validateToken, async (req, res) => {
               message: 'RouteCounter not found for update after duplicate key error'
             });
           }
+          
+          // Emit socket event to notify drivers
+          const io = req.app.get("io");
+          if (io) {
+            // Ensure consistent string types for room name
+            const roomName = `station-${String(stationId)}-route-${String(route_mkt_num)}-dir-${String(routeDirection || "1")}`;
+            const eventData = {
+              stationId: String(stationId),
+              route_mkt: String(route_mkt_num),
+              routeDirection: String(routeDirection || "1"),
+              counter: updatedCounter.counter,
+              usersCount: updatedCounter.users.length,
+              shouldStop: updatedCounter.counter > 0
+            };
+            
+            // Get room size for debugging
+            const room = io.sockets.adapter.rooms.get(roomName);
+            const roomSize = room ? room.size : 0;
+            
+            io.to(roomName).emit("passenger-count-updated", eventData);
+            console.log(`[SOCKET] Emitted passenger-count-updated to room: ${roomName} (${roomSize} clients)`);
+            console.log(`[SOCKET] Event data:`, eventData);
+          } else {
+            console.error('[SOCKET] io not available in route handler');
+          }
+          
           return res.json({
             success: true,
             message: "Route counter updated after duplicate key error",
